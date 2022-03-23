@@ -8,7 +8,7 @@
 <body>
 <div class="container">
 	<h2>게시글 목록</h2>
-	<table class="board_list">
+	<table class="post_list">
 		<colgroup>
 			<col width="15%"/>
 			<col width="*"/>
@@ -25,8 +25,8 @@
 		</thead>
 		<tbody>
 		<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
-			<td th:text="${list.boardIdx}"></td>
-			<td class="title"><a href="/board/openBoardDetail.do?boardIdx=" th:attrappend="href=${list.boardIdx}" th:text="${list.title}"></a></td>
+			<td th:text="${list.postIdx}"></td>
+			<td class="title"><a href="/board/openPostDetail.do?postIdx=" th:attrappend="href=${list.postIdx}" th:text="${list.title}"></a></td>
 			<td th:text="${list.hitCnt}"></td>
 			<td th:text="${list.createdDatetime}"></td>
 		</tr>
@@ -35,7 +35,7 @@
 		</tr>
 		</tbody>
 	</table>
-	<a href="/board/openBoardWrite.do" class="btn">글 쓰기</a>
+	<a href="/board/openPostWrite.do" class="btn">글 쓰기</a>
 </div>
 </body>
 </html>

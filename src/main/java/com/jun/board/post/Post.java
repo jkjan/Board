@@ -1,24 +1,22 @@
-package com.jun.board;
+package com.jun.board.post;
 
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "post")
 @Data
-public class Board {
-    public Board() { }
+public class Post {
+    public Post() { }
 
-    public Board(String title, String contents) {
+    public Post(String title, String contents) {
         this.title = title;
         this.contents = contents;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "post_idx")
-    private int boardIdx;
+    private int postIdx;
 
     private String title;
     private String contents;
