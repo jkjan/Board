@@ -2,14 +2,14 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>board</title>
+	<title>post</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 <div class="container">
 	<h2>게시글 등록</h2>
-	<form id="frm" name="frm" method="post" action="/board/insertBoard.do">
-		<table class="board_detail">
+	<form id="frm" name="frm" method="post" action="/board/insertPost.do">
+		<table class="post_detail">
 			<tr>
 				<td>제목</td>
 				<td><input type="text" id="title" name="title"/></td>

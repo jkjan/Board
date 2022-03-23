@@ -9,6 +9,7 @@
         <Console name="ConsoleLog" target="SYSTEM_OUT">
             <PatternLayout pattern="${consoleLayout}" charset="UTF-8" disableAnsi="false"/>
         </Console>
+
         <RollingFile name="FileLog" fileName="logs/${logFileName}.log" filePattern="logs/${logFileName}.%d{yyyy-MM-dd-hh}.log">
             <PatternLayout pattern="${fileLayout}" />
             <Policies>
@@ -24,9 +25,11 @@
             <AppenderRef ref="FileLog" />
         </Root>
 
-        <Logger name="com.jun.board" level="ALL" additivity="false">
+        <Logger name="com.jun.post" level="ALL" additivity="false">
             <AppenderRef ref="ConsoleLog" />
             <AppenderRef ref="FileLog" />
         </Logger>
+
     </Loggers>
+
 </Configuration>
