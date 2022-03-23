@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "t_board")
+@Table(name = "post")
 @Data
 public class Board {
     public Board() { }
@@ -17,6 +17,7 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_idx")
     private int boardIdx;
 
     private String title;
