@@ -24,7 +24,7 @@
             <AppenderRef ref="FileLog" />
         </Root>
 
-        <Logger name="com.jun.post" level="ALL" additivity="false">
+        <Logger name="com.jun.board" level="ALL" additivity="false">
             <AppenderRef ref="ConsoleLog" />
             <AppenderRef ref="FileLog" />
         </Logger>
