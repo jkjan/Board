@@ -32,7 +32,7 @@ public class PostServiceImpl implements PostService {
         // 조회수 증가
         if (ret.isPresent()) {
             ret.get().setHitCnt(ret.get().getHitCnt() + 1);
-//            boardRepository.save(ret.get());
+            postRepository.save(ret.get());
         }
 
         return ret;
