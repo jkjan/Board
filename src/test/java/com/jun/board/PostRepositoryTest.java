@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -39,19 +41,22 @@ class PostRepositoryTest {
 
     @AfterEach
     void tearDown() {
+        entityManager.clear();
         postRepository.deleteAll();
     }
 
     @Test
     void insertBoard() {
         postRepository.save(testEntity);
+        entityManager.detach(testEntity);
 
         Optional<Post> retrievedBd = postRepository.findById(1);
 
-        assertTrue(
-                retrievedBd.isPresent() &&
-                retrievedBd.get().getTitle().equals(TEST_TITLE) &&
-                retrievedBd.get().getContents().equals(TEST_CONTENTS));
+        System.out.println(retrievedBd);
+        assertTrue(retrievedBd.isPresent());
+        assertEquals(TEST_TITLE, retrievedBd.get().getTitle());
+        assertEquals(TEST_CONTENTS, retrievedBd.get().getContents());
+        assertNotNull(retrievedBd.get().getCreatedDatetime());
     }
 
     @Test
@@ -68,16 +73,22 @@ class PostRepositoryTest {
         testEntity.setHitCnt(testEntity.getHitCnt() + 1);
 
         Optional<Post> retrievedBd = postRepository.findById(1);
-        assertTrue(retrievedBd.isPresent() && retrievedBd.get().getHitCnt() == 1);
+        assertTrue(retrievedBd.isPresent());
+        assertEquals(retrievedBd.get().getHitCnt(), 1);
     }
 
     @Test
     void updateBoard() {
         postRepository.save(testEntity);
+        entityManager.detach(testEntity);
+
         testEntity.setTitle(MODIFIED_TITLE);
         testEntity.setContents(MODIFIED_CONTENTS);
+        postRepository.updatePost(testEntity);
 
         Optional<Post> retrievedBd = postRepository.findById(1);
-        assertTrue(retrievedBd.isPresent() && retrievedBd.get().getTitle().equals(MODIFIED_TITLE) && retrievedBd.get().getContents().equals(MODIFIED_CONTENTS));
+        assertTrue(retrievedBd.isPresent());
+        assertEquals(retrievedBd.get().getTitle(), MODIFIED_TITLE);
+        assertEquals(retrievedBd.get().getContents(), MODIFIED_CONTENTS);
     }
 }

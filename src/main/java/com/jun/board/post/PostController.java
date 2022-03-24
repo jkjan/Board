@@ -58,6 +58,7 @@ public class PostController {
 
     @RequestMapping("/board/updatePost.do")
     public String updateBoard(Post post) throws Exception {
+        log.debug(post.toString());
         postService.updatePost(post);
         log.info("Updated a post, redirecting to Board List");
         return "redirect:/board/all";

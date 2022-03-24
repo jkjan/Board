@@ -21,9 +21,4 @@ public class LoggerInterceptor implements HandlerInterceptor {
         log.debug("============================= END =============================");
         HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
     }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
-    }
 }

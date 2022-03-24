@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +15,9 @@ import java.util.Optional;
 public class PostServiceImpl implements PostService {
     final private PostRepository postRepository;
 
-    @Autowired
+    @PersistenceContext
+    private EntityManager entityManager;
+
     public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
@@ -49,7 +53,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void updatePost(Post post) {
-        postRepository.save(post);
+        postRepository.updatePost(post);
     }
 }
-

@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "post")
 @Data
 public class Post {
     public Post() { }
@@ -25,7 +24,7 @@ public class Post {
     @Column(insertable = false)
     private int hitCnt;
 
-    @Column(insertable = false, updatable = false)
+    @Column(insertable = false)
     private String creatorId;
 
     @Column(insertable = false)
@@ -36,4 +35,7 @@ public class Post {
 
     @Column(insertable = false)
     private String updatedDatetime;
+
+    @Column(insertable = false)
+    private String deletedYn;
 }
