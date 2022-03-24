@@ -7,7 +7,8 @@ import javax.persistence.*;
 @Entity
 @Data
 public class Post {
-    public Post() { }
+    public Post() {
+    }
 
     public Post(String title, String contents) {
         this.title = title;
